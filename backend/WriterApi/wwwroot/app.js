@@ -13,11 +13,22 @@ function setStatus(msg) {
   status.textContent = msg || "";
 }
 
+function setOutputText(text) {
+  if (output && "value" in output) output.value = text;
+  else if (output) output.textContent = text;
+}
+
+function getOutputText() {
+  if (!output) return "";
+  if ("value" in output) return (output.value || "").trim();
+  return (output.textContent || "").trim();
+}
+
 btn.addEventListener("click", async () => {
-  const text = input.value.trim();
+  const text = (input?.value || "").trim();
   if (!text) {
     setStatus("Paste some text first.");
-    input.focus();
+    input?.focus();
     return;
   }
 
@@ -26,47 +37,54 @@ btn.addEventListener("click", async () => {
   setStatus("Working…");
 
   try {
-    // ✅ Best option for your setup: same domain call (works on Render + localhost)
     const res = await fetch("/humanize", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      // ✅ Match your C# request model (PascalCase)
       body: JSON.stringify({
         Text: text,
-        Tone: tone.value,
-        Contractions: contractions.checked,
-        BreakLongSentences: breakLong.checked
+        Tone: tone?.value || "neutral",
+        Contractions: !!contractions?.checked,
+        BreakLongSentences: !!breakLong?.checked
       })
     });
 
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
-      setStatus(data?.error || "Request failed.");
+      setStatus(data?.error || `Request failed (${res.status}).`);
+      setOutputText("");
       return;
     }
 
-    // ✅ Match backend response (choose ONE: data.text or data.result)
-    output.value = data.text ?? data.result ?? "";
+    const textOut = data.text ?? data.result ?? "";
+    setOutputText(textOut);
 
-    output.classList.remove("fresh");
-    void output.offsetWidth; // force reflow
-    output.classList.add("fresh");
-    setTimeout(() => output.classList.remove("fresh"), 900);
+    // animation class
+    output?.classList.remove("fresh");
+    void output?.offsetWidth; // reflow
+    output?.classList.add("fresh");
+    setTimeout(() => output?.classList.remove("fresh"), 900);
 
-    copy.disabled = !output.value.trim();
+    copy.disabled = !getOutputText();
     setStatus("Done.");
   } catch (e) {
     console.error(e);
     setStatus("Could not reach the API.");
+    setOutputText("");
   } finally {
     btn.disabled = false;
   }
 });
 
 copy.addEventListener("click", async () => {
+  const textToCopy = getOutputText();
+  if (!textToCopy) {
+    setStatus("Nothing to copy yet.");
+    return;
+  }
+
   try {
-    await navigator.clipboard.writeText(output.value);
+    await navigator.clipboard.writeText(textToCopy);
     setStatus("Copied.");
   } catch {
     setStatus("Copy failed (browser permission).");
