@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "RuCmPuSwHLRVUwKzLsYYkP2AoKxNhd0ttnRX5zGINEQ=",
+  "Source": "WriterApi",
+  "BasePath": "_content/WriterApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WriterApi\\wwwroot",
+      "Source": "WriterApi",
+      "ContentRoot": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\",
+      "BasePath": "_content/WriterApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\app.js",
+      "SourceId": "WriterApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\",
+      "BasePath": "_content/WriterApi",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
+    {
+      "Identity": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\index.html",
+      "SourceId": "WriterApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\",
+      "BasePath": "_content/WriterApi",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\styles.css",
+      "SourceId": "WriterApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\",
+      "BasePath": "_content/WriterApi",
+      "RelativePath": "styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles.css"
+    }
+  ]
+}

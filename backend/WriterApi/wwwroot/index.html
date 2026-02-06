@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Writer — Demure Rewrite</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="dot"></div>
+        <span>Writer</span>
+      </div>
+      <div class="sub">Quietly improve tone, clarity, and flow.</div>
+    </header>
+
+    <section class="card">
+      <h1>Demure rewrite</h1>
+      <p class="hint">Paste text below. Choose a tone. Click <b>Humanize</b>.</p>
+
+      <label class="label" for="input">Your text</label>
+      <textarea id="input" placeholder="Write or paste here…"></textarea>
+
+      <div class="row">
+        <div class="control">
+          <label class="label" for="tone">Tone</label>
+          <select id="tone">
+            <option value="neutral" selected>Neutral</option>
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+          </select>
+        </div>
+
+        <label class="check">
+          <input id="contractions" type="checkbox" checked />
+          <span>Contractions</span>
+        </label>
+
+        <label class="check">
+          <input id="breakLong" type="checkbox" checked />
+          <span>Break long sentences</span>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="btn" class="btn">Humanize</button>
+        <button id="copy" class="btn ghost" disabled>Copy</button>
+        <span id="status" class="status"></span>
+      </div>
+
+      <div class="divider"></div>
+
+      <label class="label" for="output">Result</label>
+      <textarea id="output" readonly placeholder="Your improved text appears here…"></textarea>
+    </section>
+
+    <footer class="foot">
+      <span>Local mode • Uses your own API at <code>/humanize</code></span>
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

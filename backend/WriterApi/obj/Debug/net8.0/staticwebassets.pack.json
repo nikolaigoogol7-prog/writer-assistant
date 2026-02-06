@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\app.js",
+      "PackagePath": "staticwebassets\\app.js"
+    },
+    {
+      "Id": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\sajai\\OneDrive\\Desktop\\writer-assistant\\backend\\WriterApi\\wwwroot\\styles.css",
+      "PackagePath": "staticwebassets\\styles.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WriterApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WriterApi.props",
+      "PackagePath": "build\\WriterApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WriterApi.props",
+      "PackagePath": "buildMultiTargeting\\WriterApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WriterApi.props",
+      "PackagePath": "buildTransitive\\WriterApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

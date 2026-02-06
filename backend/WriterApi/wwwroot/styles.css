@@ -1,0 +1,224 @@
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important; transition:none!important}
+}
+
+:root{
+  --bg1:#fbfaf8;
+  --bg2:#f3efe9;
+  --ink:#171615;
+  --muted:#6b6762;
+  --line:#e7e2db;
+  --shadow: 0 18px 50px rgba(0,0,0,.08);
+  --radius: 20px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--ink);
+  background: linear-gradient(180deg,var(--bg1),var(--bg2));
+}
+
+.bg{
+  position:fixed; inset:0;
+  background:
+    radial-gradient(900px 500px at 20% 15%, rgba(150,120,90,.10), transparent 60%),
+    radial-gradient(700px 450px at 80% 25%, rgba(90,120,150,.08), transparent 55%),
+    radial-gradient(900px 650px at 50% 85%, rgba(120,90,150,.06), transparent 60%);
+  pointer-events:none;
+}
+
+.wrap{
+  position:relative;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 18px 50px;
+}
+
+/* NEW: Sticky glass header */
+.top{
+  position: sticky;
+  top: 14px;
+  z-index: 5;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+
+  margin-bottom: 18px;
+  padding: 12px 14px;
+
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.05);
+}
+
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-weight:600;
+  letter-spacing:.2px;
+}
+
+.dot{
+  width:10px;height:10px;border-radius:999px;
+  background: var(--ink);
+  opacity:.85;
+}
+
+.sub{
+  color:var(--muted);
+  font-size: 13px;
+}
+
+/* NEW: Premium card */
+.card{
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  animation: rise .45s ease-out;
+}
+
+@keyframes rise{
+  from{transform: translateY(10px); opacity:0}
+  to{transform: translateY(0); opacity:1}
+}
+
+h1{
+  margin:0 0 6px 0;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.hint{
+  margin:0 0 14px 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4
+}
+
+.label{
+  display:block;
+  margin: 12px 0 6px;
+  font-size:12px;
+  color: var(--muted);
+}
+
+textarea, select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 12px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+
+textarea:focus, select:focus{
+  box-shadow: 0 0 0 4px rgba(20,20,20,.06);
+}
+
+textarea{
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+#output{min-height: 170px}
+
+.row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top: 10px;
+}
+
+.control{min-width: 180px; flex: 1}
+
+.check{
+  display:flex; gap:10px; align-items:center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background:#fff;
+  color:var(--muted);
+  font-size: 13px;
+}
+
+.check input{accent-color: var(--ink)}
+
+.actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-top: 14px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:1px solid #1f1f1f;
+  background:#1f1f1f;
+  color:#fff;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 13px;
+  cursor:pointer;
+  transition: transform .12s ease, opacity .12s ease;
+}
+
+.btn:hover{transform: translateY(-1px)}
+.btn:active{transform: translateY(0px); opacity:.92}
+
+.btn.ghost{
+  background:transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.status{
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.divider{
+  height:1px;
+  background: var(--line);
+  margin: 16px 0 8px;
+}
+
+.foot{
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  display:flex;
+  justify-content:center;
+}
+
+code{
+  background:#ffffffaa;
+  border:1px solid var(--line);
+  padding:2px 6px;
+  border-radius: 10px;
+}
+
+/* NEW: result glow */
+textarea#output.fresh{
+  box-shadow: 0 0 0 4px rgba(20,20,20,.06), 0 18px 40px rgba(0,0,0,.08);
+}
