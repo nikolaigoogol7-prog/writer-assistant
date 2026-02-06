@@ -4,6 +4,7 @@ using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Render provides PORT at runtime
 var portEnv = Environment.GetEnvironmentVariable("PORT");
 if (!string.IsNullOrWhiteSpace(portEnv))
 {
@@ -15,12 +16,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Swagger only in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Serve frontend from wwwroot
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -99,10 +102,11 @@ app.MapPost("/humanize", (HumanizeRequest req) =>
         });
     }
 
-    // Add a friendly header (optional)
+    // Optional header
     t = "Here’s a cleaner version:\n\n" + t;
 
-    return Results.Ok(new { result = t });
+    // ✅ Frontend expects "text"
+    return Results.Ok(new { text = t });
 });
 
 app.Run();
@@ -110,13 +114,10 @@ app.Run();
 static string ReplaceMany(string input, Dictionary<string, string> map)
 {
     var output = input;
-
-    // Replace longer keys first to avoid partial overlaps
     foreach (var kv in map.OrderByDescending(k => k.Key.Length))
     {
         output = ReplaceOrdinalIgnoreCase(output, kv.Key, kv.Value);
     }
-
     return output;
 }
 
@@ -131,13 +132,11 @@ static string ReplaceOrdinalIgnoreCase(string input, string search, string repla
         input = input.Remove(index, search.Length).Insert(index, replace);
         index += replace.Length;
     }
-
     return input;
 }
 
 static string SplitLongSentences(string text, int maxLen)
 {
-    // Splits by ". " and then re-joins; if a sentence is too long, splits at ", " roughly in the middle.
     var parts = text.Split(new[] { ". " }, StringSplitOptions.None).ToList();
 
     for (int i = 0; i < parts.Count; i++)
@@ -155,14 +154,13 @@ static string SplitLongSentences(string text, int maxLen)
 
         if (commaPositions.Count > 0)
         {
-            // Split near middle comma
             int mid = commaPositions[commaPositions.Count / 2];
             var left = s.Substring(0, mid).Trim();
             var right = s.Substring(mid + 2).Trim();
 
             parts[i] = left + ".";
             parts.Insert(i + 1, right);
-            i++; // skip newly inserted
+            i++;
         }
     }
 
@@ -171,7 +169,7 @@ static string SplitLongSentences(string text, int maxLen)
 
 record HumanizeRequest(
     string Text,
-    string? Tone = "neutral",      // neutral | casual | formal
-    bool Contractions = true,      // true => "do not" -> "don't"
-    bool BreakLongSentences = true // splits very long sentences
+    string? Tone = "neutral",
+    bool Contractions = true,
+    bool BreakLongSentences = true
 );

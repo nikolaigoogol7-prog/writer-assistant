@@ -26,14 +26,16 @@ btn.addEventListener("click", async () => {
   setStatus("Working…");
 
   try {
+    // ✅ Best option for your setup: same domain call (works on Render + localhost)
     const res = await fetch("/humanize", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      // ✅ Match your C# request model (PascalCase)
       body: JSON.stringify({
-        text,
-        tone: tone.value,
-        contractions: contractions.checked,
-        breakLongSentences: breakLong.checked
+        Text: text,
+        Tone: tone.value,
+        Contractions: contractions.checked,
+        BreakLongSentences: breakLong.checked
       })
     });
 
@@ -44,18 +46,19 @@ btn.addEventListener("click", async () => {
       return;
     }
 
- output.value = data.result ?? "";
+    // ✅ Match backend response (choose ONE: data.text or data.result)
+    output.value = data.text ?? data.result ?? "";
 
-output.classList.remove("fresh");
-void output.offsetWidth; // force reflow
-output.classList.add("fresh");
-setTimeout(() => output.classList.remove("fresh"), 900);
+    output.classList.remove("fresh");
+    void output.offsetWidth; // force reflow
+    output.classList.add("fresh");
+    setTimeout(() => output.classList.remove("fresh"), 900);
 
-copy.disabled = !output.value.trim();
-setStatus("Done.");
-
+    copy.disabled = !output.value.trim();
+    setStatus("Done.");
   } catch (e) {
-    setStatus("Could not reach the API. Is dotnet run running?");
+    console.error(e);
+    setStatus("Could not reach the API.");
   } finally {
     btn.disabled = false;
   }
